@@ -10,8 +10,10 @@ export default function Window({ win, onClose, onMinimize, onMaximize, onFocus, 
   const w = win.defaultSize?.w || 700
   const h = win.defaultSize?.h || 500
 
-  const boundsRight  = Math.max(0, window.innerWidth  - w)
-  const boundsBottom = Math.max(0, window.innerHeight - h - 48)
+  const vw = typeof window !== 'undefined' ? window.innerWidth  : 1280
+  const vh = typeof window !== 'undefined' ? window.innerHeight : 800
+  const boundsRight  = Math.max(0, vw - w)
+  const boundsBottom = Math.max(0, vh - h - 48)
 
   return (
     <Draggable

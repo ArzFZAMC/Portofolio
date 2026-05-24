@@ -1,10 +1,16 @@
 import { useState, useEffect } from 'react'
 
 export function useMediaQuery(query) {
-  const [matches, setMatches] = useState(() => window.matchMedia(query).matches)
+  // Safe default: treat as desktop during SSR / build
+  const [matches, setMatches] = useState(() => {
+    if (typeof window === 'undefined') return false
+    return window.matchMedia(query).matches
+  })
 
   useEffect(() => {
+    if (typeof window === 'undefined') return
     const mq = window.matchMedia(query)
+    setMatches(mq.matches)                          // sync on mount
     const handler = (e) => setMatches(e.matches)
     mq.addEventListener('change', handler)
     return () => mq.removeEventListener('change', handler)
