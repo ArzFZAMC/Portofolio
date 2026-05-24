@@ -1,0 +1,156 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+:root {
+  --neon: #00d4ff;
+  --neon-blue: #0066ff;
+  --bg: #050a14;
+  --card: #0a1628;
+  --border: rgba(0, 212, 255, 0.2);
+  --text: #e2e8f0;
+  --text-dim: #64748b;
+}
+
+html, body, #root {
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Exo 2', sans-serif;
+  cursor: default;
+  user-select: none;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar { width: 4px; height: 4px; }
+::-webkit-scrollbar-track { background: rgba(0,0,0,0.3); }
+::-webkit-scrollbar-thumb { background: var(--neon); border-radius: 2px; }
+
+/* Glass card */
+.glass {
+  background: rgba(10, 22, 40, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+}
+
+/* Neon text */
+.neon-text {
+  color: var(--neon);
+  text-shadow: 0 0 8px rgba(0,212,255,0.7), 0 0 20px rgba(0,212,255,0.3);
+}
+
+/* Desktop grid background */
+.desktop-grid {
+  background-color: #050a14;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(0, 80, 200, 0.12) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(0, 212, 255, 0.08) 0%, transparent 45%),
+    radial-gradient(ellipse at 50% 90%, rgba(0, 100, 255, 0.06) 0%, transparent 40%),
+    linear-gradient(rgba(0, 212, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 212, 255, 0.04) 1px, transparent 1px);
+  background-size: 100% 100%, 100% 100%, 100% 100%, 48px 48px, 48px 48px;
+}
+
+/* Neon border glow */
+.neon-border {
+  border: 1px solid rgba(0,212,255,0.35);
+  box-shadow: 0 0 8px rgba(0,212,255,0.15), inset 0 0 8px rgba(0,212,255,0.05);
+}
+
+/* Window header drag cursor */
+.drag-handle { cursor: grab; }
+.drag-handle:active { cursor: grabbing; }
+
+/* App icon hover */
+.app-icon:hover { transform: translateY(-4px); }
+.app-icon { transition: transform 0.2s ease; }
+
+/* Taskbar button */
+.taskbar-btn {
+  transition: all 0.2s ease;
+  border: 1px solid transparent;
+}
+.taskbar-btn:hover {
+  border-color: rgba(0,212,255,0.4);
+  background: rgba(0,212,255,0.08);
+}
+
+/* Progress bar shimmer */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.progress-shimmer {
+  background: linear-gradient(90deg, #00d4ff 0%, #60efff 40%, #00d4ff 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.5s infinite;
+}
+
+/* Scan line effect */
+@keyframes scanLine {
+  0% { top: -2px; }
+  100% { top: 100%; }
+}
+
+.scan-effect::after {
+  content: '';
+  position: absolute;
+  left: 0; right: 0;
+  height: 2px;
+  background: linear-gradient(to right, transparent, rgba(0,212,255,0.4), transparent);
+  animation: scanLine 4s linear infinite;
+  pointer-events: none;
+}
+
+/* Terminal cursor blink */
+@keyframes cursorBlink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
+.terminal-cursor {
+  display: inline-block;
+  width: 8px;
+  height: 16px;
+  background: var(--neon);
+  animation: cursorBlink 1s step-end infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+}
+
+/* Skill bar animation */
+@keyframes fillBar {
+  from { width: 0; }
+}
+
+.skill-bar {
+  animation: fillBar 1.2s ease-out forwards;
+}
+
+/* Notification slide */
+@keyframes notifSlide {
+  from { transform: translateX(120%); opacity: 0; }
+  to { transform: translateX(0); opacity: 1; }
+}
+
+.notif-enter { animation: notifSlide 0.35s ease-out; }
+
+/* Selection */
+::selection {
+  background: rgba(0,212,255,0.3);
+  color: white;
+}
+
+/* Hide scrollbar on filter pills */
+.scrollbar-hide::-webkit-scrollbar { display: none; }
+.scrollbar-hide { -ms-overflow-style: none; scrollbar-width: none; }
