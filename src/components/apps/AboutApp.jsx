@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 // Taruh foto kamu di folder public/ dengan nama photo.jpg
 // Contoh: public/photo.jpg
 // Ganti '/photo.jpg' dengan nama file foto kamu
-const PHOTO_SRC = '/photo.jpeg'
+const PHOTO_SRC = 'photo.jpeg'
 // ──────────────────────────────────────────────────────
 
 const TECH_STACK = [
