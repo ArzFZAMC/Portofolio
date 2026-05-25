@@ -21,8 +21,7 @@ const PROJECTS = [
     emoji: '🎮',
     color: '#0066ff',
     github: 'https://github.com/ArzFZAMC',
-    disabled: true,
-    preview: '🚧 Website Sedang Dalam Perbaikan'
+    preview: null, // Tidak ada link preview
   },
   {
     id: 3,
@@ -57,6 +56,11 @@ const card = {
 
 export default function ProjectsApp() {
   const [selected, setSelected] = useState(null)
+
+  // Fungsi untuk mengecek apakah preview available
+  const isPreviewAvailable = (project) => {
+    return project.preview && typeof project.preview === 'string' && project.preview.trim() !== ''
+  }
 
   return (
     <div className="p-5 h-full overflow-y-auto">
@@ -188,6 +192,7 @@ export default function ProjectsApp() {
               </div>
 
               <div className="flex gap-2">
+                {/* GitHub Button */}
                 <a
                   href={selected.github}
                   target="_blank"
@@ -196,8 +201,9 @@ export default function ProjectsApp() {
                 >
                   <FiGithub size={14} /> GitHub
                 </a>
-                <a
-                  href={selected.disabled ? (
+
+                {/* Preview / Maintenance */}
+                {!isPreviewAvailable(selected) ? (
                   <div
                     className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl font-body text-sm opacity-70 cursor-not-allowed"
                     style={{
@@ -206,7 +212,7 @@ export default function ProjectsApp() {
                       border: '1px solid rgba(250,204,21,0.25)',
                     }}
                   >
-                    🚧 Website Sedang Dalam Perbaikan
+                    🚧 Maintenance
                   </div>
                 ) : (
                   <a
@@ -223,9 +229,6 @@ export default function ProjectsApp() {
                     <FiExternalLink size={14} /> Preview
                   </a>
                 )}
-                >
-                  <FiExternalLink size={14} /> Preview
-                </a>
               </div>
             </motion.div>
           </motion.div>
