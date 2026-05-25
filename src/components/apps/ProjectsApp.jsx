@@ -21,7 +21,8 @@ const PROJECTS = [
     emoji: '🎮',
     color: '#0066ff',
     github: 'https://github.com/ArzFZAMC',
-    preview: '🚧 Website Sedang Dalam Perbaikan',
+    disabled: true,
+    preview: '🚧 Website Sedang Dalam Perbaikan'
   },
   {
     id: 3,
