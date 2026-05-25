@@ -12,6 +12,7 @@ import TerminalApp from './apps/TerminalApp'
 import SkillsApp from './apps/SkillsApp'
 import ContactApp from './apps/ContactApp'
 
+import WelcomeBot from './WelcomeBot'
 import {
   FiUser, FiFolder, FiTerminal, FiZap, FiMail, FiCpu
 } from 'react-icons/fi'
@@ -169,6 +170,9 @@ export default function Desktop() {
           ))}
         </AnimatePresence>
       </div>
+
+      {/* Welcome Bot */}
+      <WelcomeBot />
 
       {/* Taskbar */}
       <Taskbar onOpenApp={handleOpenApp} apps={APP_CONFIGS} />

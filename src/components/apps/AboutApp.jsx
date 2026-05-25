@@ -1,4 +1,12 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
+
+// ── FOTO PROFILE ──────────────────────────────────────
+// Taruh foto kamu di folder public/ dengan nama photo.jpg
+// Contoh: public/photo.jpg
+// Ganti '/photo.jpg' dengan nama file foto kamu
+const PHOTO_SRC = '/photo.jpg'
+// ──────────────────────────────────────────────────────
 
 const TECH_STACK = [
   { name: 'React.js', color: '#61dafb' },
@@ -28,6 +36,8 @@ const item = {
 }
 
 export default function AboutApp() {
+  const [imgError, setImgError] = useState(false)
+
   return (
     <motion.div
       variants={stagger}
@@ -40,9 +50,18 @@ export default function AboutApp() {
         {/* Avatar */}
         <div className="relative flex-shrink-0">
           <div className="w-20 h-20 rounded-2xl overflow-hidden neon-border relative">
-            <div className="w-full h-full bg-gradient-to-br from-neon/20 to-neon-blue/20 flex items-center justify-center">
-              <span className="text-4xl">👨‍💻</span>
-            </div>
+            {!imgError ? (
+              <img
+                src={PHOTO_SRC}
+                alt="Rasya Arista"
+                className="w-full h-full object-cover"
+                onError={() => setImgError(true)}
+              />
+            ) : (
+              <div className="w-full h-full bg-gradient-to-br from-neon/20 to-neon-blue/20 flex items-center justify-center">
+                <span className="text-4xl">👨‍💻</span>
+              </div>
+            )}
           </div>
           <div className="absolute -bottom-1 -right-1 w-5 h-5 rounded-full bg-green-400 border-2 border-cyber-bg" />
         </div>

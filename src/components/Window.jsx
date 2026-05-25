@@ -83,10 +83,20 @@ export default function Window({ win, onClose, onMinimize, onMaximize, onFocus, 
             <span className="font-terminal text-xs text-white/60 tracking-wider">{win.title}</span>
           </div>
 
-          {/* Right status */}
-          <div className="no-drag flex items-center gap-1 pointer-events-none">
-            <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
-            <span className="font-terminal text-[9px] text-white/30">ACTIVE</span>
+          {/* Right — visible close button */}
+          <div className="no-drag flex items-center gap-2" style={{ cursor: 'default' }}>
+            <div className="flex items-center gap-1 mr-1">
+              <div className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+              <span className="font-terminal text-[9px] text-white/30">ACTIVE</span>
+            </div>
+            <button
+              onClick={(e) => { e.stopPropagation(); onClose() }}
+              className="flex items-center gap-1.5 px-2.5 py-1 rounded-lg font-terminal text-xs text-white/50 hover:text-red-400 hover:bg-red-500/10 border border-transparent hover:border-red-500/30 transition-all duration-200"
+              title="Close Window"
+            >
+              <FiX size={12} />
+              <span>Close</span>
+            </button>
           </div>
         </div>
 
