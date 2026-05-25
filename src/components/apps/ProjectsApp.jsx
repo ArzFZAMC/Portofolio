@@ -197,15 +197,32 @@ export default function ProjectsApp() {
                   <FiGithub size={14} /> GitHub
                 </a>
                 <a
-                  href={selected.preview}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl font-body text-sm transition-all duration-200"
-                  style={{
-                    color: selected.color,
-                    background: `${selected.color}15`,
-                    border: `1px solid ${selected.color}40`,
-                  }}
+                  href={selected.disabled ? (
+                  <div
+                    className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl font-body text-sm opacity-70 cursor-not-allowed"
+                    style={{
+                      color: '#facc15',
+                      background: 'rgba(250,204,21,0.08)',
+                      border: '1px solid rgba(250,204,21,0.25)',
+                    }}
+                  >
+                    🚧 Website Sedang Dalam Perbaikan
+                  </div>
+                ) : (
+                  <a
+                    href={selected.preview}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl font-body text-sm transition-all duration-200"
+                    style={{
+                      color: selected.color,
+                      background: `${selected.color}15`,
+                      border: `1px solid ${selected.color}40`,
+                    }}
+                  >
+                    <FiExternalLink size={14} /> Preview
+                  </a>
+                )}
                 >
                   <FiExternalLink size={14} /> Preview
                 </a>
