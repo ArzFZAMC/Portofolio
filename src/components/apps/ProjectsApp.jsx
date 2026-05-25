@@ -10,58 +10,38 @@ const PROJECTS = [
     tech: ['React.js', 'Vite', 'TailwindCSS', 'Framer Motion'],
     emoji: '🖥️',
     color: '#00d4ff',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
+    github: 'https://github.com/ArzFZAMC',
+    preview: 'https://lacy-os.vercel.app/',
   },
   {
     id: 2,
-    title: 'Website Sekolah Modern',
-    desc: 'Website sekolah dengan desain modern, responsif, dan fitur pengumuman, galeri, dan informasi akademik.',
-    tech: ['HTML', 'CSS', 'JavaScript', 'PHP'],
-    emoji: '🏫',
+    title: 'Pokemon TCG - BETA',
+    desc: 'Website TCG Pokemon yang terinspirasi dari Pokemon TCGP.',
+    tech: ['React 18 + Vite', 'TailwindCSS', 'Framer Motion', 'Node.js + Express.js', 'dll..'],
+    emoji: '🎮',
     color: '#0066ff',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
+    github: 'https://github.com/ArzFZAMC',
+    preview: '🚧 Website Sedang Dalam Perbaikan',
   },
   {
     id: 3,
-    title: 'Laravel Library System',
-    desc: 'Sistem manajemen perpustakaan berbasis web dengan fitur peminjaman buku, manajemen anggota, dan laporan.',
-    tech: ['Laravel', 'PHP', 'MySQL', 'Bootstrap'],
-    emoji: '📚',
+    title: 'Money Tracker',
+    desc: 'Aplikasi Pencatatan keuangan pribadi yang simpel & intuitif.',
+    tech: ['PHP', 'JavaScript', 'MySQL', 'TailwindCSS'],
+    emoji: '📈',
     color: '#f05340',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
+    github: 'https://github.com/ArzFZAMC',
+    preview: 'https://raslynn.my-board.org/finansial/auth/login.php',
   },
   {
     id: 4,
-    title: 'VB.Net Maze Game',
-    desc: 'Game maze interaktif berbasis desktop menggunakan Visual Basic .NET dengan level system dan timer.',
-    tech: ['VB.Net', 'Windows Forms', '.NET'],
-    emoji: '🎮',
+    title: 'Website FAN MADE JKT48 - BETA',
+    desc: 'Website yang terinspirasi dari website JKT48 untuk melihat jadwal theater dan konser',
+    tech: ['PHP', 'JavaScript', 'MySQL', 'TailwindCSS'],
+    emoji: '🎤',
     color: '#a855f7',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
-  },
-  {
-    id: 5,
-    title: 'PPDB Desktop App',
-    desc: 'Aplikasi desktop Penerimaan Peserta Didik Baru dengan manajemen pendaftaran, seleksi, dan pengumuman.',
-    tech: ['VB.Net', 'MySQL', 'Crystal Reports'],
-    emoji: '📋',
-    color: '#00ff88',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
-  },
-  {
-    id: 6,
-    title: 'Snack Branding Design',
-    desc: 'Desain identitas brand untuk produk snack lokal, meliputi logo, kemasan, dan materi promosi digital.',
-    tech: ['Figma', 'Adobe Illustrator', 'Canva'],
-    emoji: '🎨',
-    color: '#f59e0b',
-    github: 'https://github.com/rasya-arista',
-    preview: '#',
+    github: 'https://github.com/ArzFZAMC',
+    preview: 'https://raslynn.my-board.org/idol_grup/',
   },
 ]
 
@@ -85,7 +65,7 @@ export default function ProjectsApp() {
           <div className="font-terminal text-xs text-neon/50 mt-0.5">{PROJECTS.length} projects</div>
         </div>
         <div className="glass neon-border rounded-lg px-3 py-1.5 font-terminal text-xs text-neon/60">
-          MR Codehex Studio
+          MR Codehex
         </div>
       </div>
 

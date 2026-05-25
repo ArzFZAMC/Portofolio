@@ -69,7 +69,7 @@ export default function AboutApp() {
         {/* Name / title */}
         <div>
           <div className="font-cyber text-2xl font-bold text-white tracking-wide">Rasya Arista</div>
-          <div className="font-terminal text-sm text-neon mt-0.5">MR Codehex Studio</div>
+          <div className="font-terminal text-sm text-neon mt-0.5">MR Codehex</div>
           <div className="flex flex-wrap gap-1.5 mt-2">
             {['Front-End Dev', 'UI Enthusiast', 'Problem Solver'].map(r => (
               <span
