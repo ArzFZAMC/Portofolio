@@ -2,42 +2,31 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiX, FiMessageCircle } from 'react-icons/fi'
 
-// Foto placeholder — ganti src="/photo.jpg" dengan foto asli kamu
-// Taruh foto kamu di folder public/ dengan nama photo.jpg
-const AVATAR_SRC = '/photo.jpg'
-
-const FULL_TEXT = `Hai! Saya Rasya Arista, seorang Frontend Developer. Saya membangun sebuah company sederhana yang bernama MR Codehex. Klik ikon di sebelah kiri untuk melihat portfolio saya! 👋`
+const PHOTO_SRC = '/photo.jpg'
+const FULL_TEXT = `Hai! Saya Rasya Arista, seorang Frontend Developer. Saya membangun sebuah company sederhana yang bernama MR Codehex. Klik ikon di atas untuk melihat portfolio saya! 👋`
 
 export default function WelcomeBot() {
-  const [visible, setVisible]     = useState(false)
-  const [minimized, setMinimized] = useState(false)
-  const [displayed, setDisplayed] = useState('')
-  const [typing, setTyping]       = useState(false)
-  const [imgError, setImgError]   = useState(false)
+  const [visible,    setVisible]    = useState(false)
+  const [minimized,  setMinimized]  = useState(false)
+  const [displayed,  setDisplayed]  = useState('')
+  const [typing,     setTyping]     = useState(false)
+  const [imgError,   setImgError]   = useState(false)
 
-  // Muncul 1.5 detik setelah desktop load
   useEffect(() => {
-    const t = setTimeout(() => {
-      setVisible(true)
-      setTyping(true)
-    }, 1500)
+    const t = setTimeout(() => { setVisible(true); setTyping(true) }, 1800)
     return () => clearTimeout(t)
   }, [])
 
-  // Typing animation
   useEffect(() => {
     if (!typing) return
     let i = 0
     setDisplayed('')
-    const interval = setInterval(() => {
+    const iv = setInterval(() => {
       i++
       setDisplayed(FULL_TEXT.slice(0, i))
-      if (i >= FULL_TEXT.length) {
-        clearInterval(interval)
-        setTyping(false)
-      }
-    }, 28)
-    return () => clearInterval(interval)
+      if (i >= FULL_TEXT.length) { clearInterval(iv); setTyping(false) }
+    }, 26)
+    return () => clearInterval(iv)
   }, [typing])
 
   return (
@@ -45,17 +34,19 @@ export default function WelcomeBot() {
       {visible && (
         <motion.div
           initial={{ opacity: 0, y: 30, scale: 0.9 }}
-          animate={{ opacity: 1, y: 0, scale: 1 }}
-          exit={{ opacity: 0, y: 20, scale: 0.9 }}
+          animate={{ opacity: 1, y: 0,  scale: 1   }}
+          exit={{   opacity: 0, y: 20,  scale: 0.9 }}
           transition={{ type: 'spring', damping: 22 }}
-          className="absolute bottom-16 right-5 z-50 w-72"
+          /* Mobile: bottom-center   Desktop: bottom-right */
+          className="absolute bottom-16 z-50
+                     left-3 right-3
+                     md:left-auto md:right-5 md:w-72"
         >
-          {/* Minimized pill */}
           {minimized ? (
+            /* Minimized pill */
             <motion.button
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              onClick={() => setMinimized(false)}
+              initial={{ scale: 0 }} animate={{ scale: 1 }}
+              onClick={() => { setMinimized(false) }}
               className="ml-auto flex items-center gap-2 px-3 py-2 rounded-full shadow-neon"
               style={{ background: 'rgba(0,212,255,0.15)', border: '1px solid rgba(0,212,255,0.4)' }}
             >
@@ -64,10 +55,11 @@ export default function WelcomeBot() {
               <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             </motion.button>
           ) : (
+            /* Chat bubble card */
             <div
-              className="rounded-2xl overflow-hidden shadow-window"
+              className="rounded-2xl overflow-hidden shadow-window w-full"
               style={{
-                background: 'rgba(8,16,32,0.95)',
+                background: 'rgba(8,16,32,0.97)',
                 backdropFilter: 'blur(20px)',
                 border: '1px solid rgba(0,212,255,0.2)',
               }}
@@ -80,12 +72,12 @@ export default function WelcomeBot() {
                 {/* Avatar */}
                 <div className="relative flex-shrink-0">
                   <div
-                    className="w-8 h-8 rounded-full overflow-hidden flex items-center justify-center"
+                    className="w-8 h-8 rounded-full overflow-hidden"
                     style={{ border: '1.5px solid rgba(0,212,255,0.5)' }}
                   >
                     {!imgError ? (
                       <img
-                        src={AVATAR_SRC}
+                        src={PHOTO_SRC}
                         alt="Rasya"
                         className="w-full h-full object-cover"
                         onError={() => setImgError(true)}
@@ -105,36 +97,31 @@ export default function WelcomeBot() {
                 </div>
 
                 <div className="flex items-center gap-1">
-                  {/* Minimize */}
                   <button
                     onClick={() => setMinimized(true)}
-                    className="w-6 h-6 rounded-lg flex items-center justify-center text-white/40 hover:text-white/70 hover:bg-white/5 transition-all"
-                    title="Minimize"
+                    className="w-6 h-6 rounded-lg flex items-center justify-center text-white/40 hover:text-white/70 hover:bg-white/5 transition-all active:scale-90"
                   >
                     <span className="text-xs leading-none font-bold">—</span>
                   </button>
-                  {/* Close */}
                   <button
                     onClick={() => setVisible(false)}
-                    className="w-6 h-6 rounded-lg flex items-center justify-center text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all"
-                    title="Close"
+                    className="w-6 h-6 rounded-lg flex items-center justify-center text-white/40 hover:text-red-400 hover:bg-red-500/10 transition-all active:scale-90"
                   >
                     <FiX size={12} />
                   </button>
                 </div>
               </div>
 
-              {/* Chat bubble */}
+              {/* Chat content */}
               <div className="p-3.5">
                 <div
                   className="rounded-2xl rounded-tl-sm px-3.5 py-2.5 text-sm font-body leading-relaxed text-white/85"
                   style={{ background: 'rgba(0,212,255,0.08)', border: '1px solid rgba(0,212,255,0.15)' }}
                 >
                   {displayed}
-                  {typing && <span className="terminal-cursor ml-0.5 !w-1.5 !h-3.5" />}
+                  {typing && <span className="inline-block w-1.5 h-3.5 bg-neon align-middle ml-0.5 animate-blink" />}
                 </div>
 
-                {/* Timestamp */}
                 {!typing && (
                   <motion.div
                     initial={{ opacity: 0 }}

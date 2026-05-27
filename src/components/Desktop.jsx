@@ -6,76 +6,62 @@ import Window from './Window'
 import DesktopIcon from './DesktopIcon'
 import Notification from './Notification'
 import ContextMenu from './ContextMenu'
+import WelcomeBot from './WelcomeBot'
 import AboutApp from './apps/AboutApp'
 import ProjectsApp from './apps/ProjectsApp'
 import TerminalApp from './apps/TerminalApp'
 import SkillsApp from './apps/SkillsApp'
 import ContactApp from './apps/ContactApp'
-
-import WelcomeBot from './WelcomeBot'
-import {
-  FiUser, FiFolder, FiTerminal, FiZap, FiMail, FiCpu
-} from 'react-icons/fi'
+import { FiUser, FiFolder, FiTerminal, FiZap, FiMail } from 'react-icons/fi'
 
 export const APP_CONFIGS = [
   {
-    id: 'about',
-    title: 'About Me',
-    Icon: FiUser,
+    id: 'about',    title: 'About Me',  Icon: FiUser,
     component: AboutApp,
-    defaultSize: { w: 680, h: 540 },
-    defaultPos: { x: 80, y: 40 },
+    defaultSize: { w: 680, h: 540 }, defaultPos: { x: 80,  y: 40 },
     accentColor: '#00d4ff',
   },
   {
-    id: 'projects',
-    title: 'Projects',
-    Icon: FiFolder,
+    id: 'projects', title: 'Projects',  Icon: FiFolder,
     component: ProjectsApp,
-    defaultSize: { w: 860, h: 580 },
-    defaultPos: { x: 120, y: 60 },
+    defaultSize: { w: 860, h: 580 }, defaultPos: { x: 120, y: 60 },
     accentColor: '#0066ff',
   },
   {
-    id: 'terminal',
-    title: 'Terminal',
-    Icon: FiTerminal,
+    id: 'terminal', title: 'Terminal',  Icon: FiTerminal,
     component: TerminalApp,
-    defaultSize: { w: 720, h: 440 },
-    defaultPos: { x: 160, y: 80 },
+    defaultSize: { w: 720, h: 440 }, defaultPos: { x: 160, y: 80 },
     accentColor: '#00ff88',
   },
   {
-    id: 'skills',
-    title: 'Skills',
-    Icon: FiZap,
+    id: 'skills',   title: 'Skills',    Icon: FiZap,
     component: SkillsApp,
-    defaultSize: { w: 680, h: 520 },
-    defaultPos: { x: 100, y: 60 },
+    defaultSize: { w: 680, h: 520 }, defaultPos: { x: 100, y: 60 },
     accentColor: '#a855f7',
   },
   {
-    id: 'contact',
-    title: 'Contact',
-    Icon: FiMail,
+    id: 'contact',  title: 'Contact',   Icon: FiMail,
     component: ContactApp,
-    defaultSize: { w: 560, h: 440 },
-    defaultPos: { x: 200, y: 80 },
+    defaultSize: { w: 560, h: 440 }, defaultPos: { x: 200, y: 80 },
     accentColor: '#f59e0b',
   },
 ]
 
 const CONTEXT_ITEMS = [
-  { label: 'Open Terminal', action: 'terminal' },
-  { label: 'View Projects', action: 'projects' },
-  { label: 'About Rasya', action: 'about' },
+  { label: 'Open Terminal',   action: 'terminal' },
+  { label: 'View Projects',   action: 'projects' },
+  { label: 'About Rasya',     action: 'about'    },
   { divider: true },
-  { label: 'Refresh Desktop', action: 'refresh' },
-  { label: 'System Info', action: 'sysinfo' },
+  { label: 'Refresh Desktop', action: 'refresh'  },
+  { label: 'System Info',     action: 'sysinfo'  },
 ]
 
 export default function Desktop() {
-  const { windows, openWindow, closeWindow, minimizeWindow, maximizeWindow, focusWindow, notifications, addNotification } = useStore()
+  const {
+    windows, openWindow, closeWindow,
+    minimizeWindow, maximizeWindow, focusWindow,
+    notifications, addNotification,
+  } = useStore()
   const [contextMenu, setContextMenu] = useState(null)
 
   const handleOpenApp = useCallback((appId) => {
@@ -113,12 +99,21 @@ export default function Desktop() {
       onContextMenu={handleContextMenu}
       onClick={() => setContextMenu(null)}
     >
-      {/* Ambient glow orbs */}
+      {/* Ambient glow */}
       <div className="absolute top-1/4 left-1/4 w-96 h-96 rounded-full bg-blue-600/5 blur-3xl pointer-events-none" />
       <div className="absolute bottom-1/3 right-1/4 w-80 h-80 rounded-full bg-cyan-400/5 blur-3xl pointer-events-none" />
 
-      {/* Desktop icons */}
-      <div className="absolute top-6 left-6 flex flex-col gap-4 z-10">
+      {/* ── Desktop icons ──
+          Desktop: column on left
+          Mobile:  row along top, scrollable horizontally          */}
+      <div className="
+        absolute z-10
+        top-3 left-0 right-0
+        flex flex-row gap-2 px-3 overflow-x-auto
+        md:top-6 md:left-6 md:right-auto md:flex-col md:gap-4 md:px-0 md:overflow-visible
+        scrollbar-hide
+        pb-1 md:pb-0
+      ">
         {APP_CONFIGS.map((app, i) => (
           <DesktopIcon
             key={app.id}
@@ -129,7 +124,7 @@ export default function Desktop() {
         ))}
       </div>
 
-      {/* Open Windows */}
+      {/* ── Open Windows ── */}
       <AnimatePresence>
         {windows.map(win => {
           if (win.isMinimized) return null
@@ -138,10 +133,10 @@ export default function Desktop() {
             <Window
               key={win.id}
               win={win}
-              onClose={() => closeWindow(win.id)}
-              onMinimize={() => minimizeWindow(win.id)}
-              onMaximize={() => maximizeWindow(win.id)}
-              onFocus={() => focusWindow(win.id)}
+              onClose={()    => closeWindow(win.id)}
+              onMinimize={()  => minimizeWindow(win.id)}
+              onMaximize={()  => maximizeWindow(win.id)}
+              onFocus={()    => focusWindow(win.id)}
             >
               <AppComponent />
             </Window>
@@ -149,7 +144,7 @@ export default function Desktop() {
         })}
       </AnimatePresence>
 
-      {/* Context Menu */}
+      {/* Context Menu (desktop only) */}
       <AnimatePresence>
         {contextMenu && (
           <ContextMenu
@@ -163,7 +158,7 @@ export default function Desktop() {
       </AnimatePresence>
 
       {/* Notifications */}
-      <div className="absolute top-4 right-4 flex flex-col gap-2 z-[9999] pointer-events-none">
+      <div className="absolute top-14 right-3 md:top-4 md:right-4 flex flex-col gap-2 z-[9999] pointer-events-none">
         <AnimatePresence>
           {notifications.map(n => (
             <Notification key={n.id} notification={n} />

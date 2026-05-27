@@ -21,7 +21,7 @@ const PROJECTS = [
     emoji: '🎮',
     color: '#0066ff',
     github: 'https://github.com/ArzFZAMC',
-    preview: null, // Tidak ada link preview
+    preview: null,
   },
   {
     id: 3,
@@ -57,7 +57,6 @@ const card = {
 export default function ProjectsApp() {
   const [selected, setSelected] = useState(null)
 
-  // Fungsi untuk mengecek apakah preview available
   const isPreviewAvailable = (project) => {
     return project.preview && typeof project.preview === 'string' && project.preview.trim() !== ''
   }
@@ -192,7 +191,6 @@ export default function ProjectsApp() {
               </div>
 
               <div className="flex gap-2">
-                {/* GitHub Button */}
                 <a
                   href={selected.github}
                   target="_blank"
@@ -202,7 +200,6 @@ export default function ProjectsApp() {
                   <FiGithub size={14} /> GitHub
                 </a>
 
-                {/* Preview / Maintenance - Disabled with Tooltip */}
                 {!isPreviewAvailable(selected) ? (
                   <div
                     className="flex-1 flex items-center justify-center gap-2 py-2 rounded-xl font-body text-sm cursor-not-allowed relative group"
@@ -213,7 +210,6 @@ export default function ProjectsApp() {
                     }}
                   >
                     🚧 Maintenance
-                    {/* Tooltip on hover */}
                     <div className="absolute bottom-full mb-2 left-1/2 transform -translate-x-1/2 px-2 py-1 bg-gray-900 text-white text-xs rounded whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none z-10 border border-white/10">
                       Website sedang dalam perbaikan
                     </div>
