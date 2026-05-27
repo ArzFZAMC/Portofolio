@@ -3,14 +3,13 @@ import { motion } from 'framer-motion'
 
 const SKILLS = [
   { name: 'HTML', level: 90, color: '#e34f26', category: 'Frontend' },
-  { name: 'CSS', level: 85, color: '#264de4', category: 'Frontend' },
-  { name: 'JavaScript', level: 80, color: '#f7df1e', category: 'Frontend' },
-  { name: 'React.js', level: 75, color: '#61dafb', category: 'Frontend' },
+  { name: 'CSS', level: 90, color: '#264de4', category: 'Frontend' },
+  { name: 'JavaScript', level: 85, color: '#f7df1e', category: 'Frontend' },
+  { name: 'React.js', level: 85, color: '#61dafb', category: 'Frontend' },
   { name: 'TailwindCSS', level: 80, color: '#38bdf8', category: 'Frontend' },
-  { name: 'PHP', level: 70, color: '#777bb4', category: 'Backend' },
+  { name: 'PHP', level: 80, color: '#777bb4', category: 'Backend' },
   { name: 'Laravel', level: 70, color: '#f05340', category: 'Backend' },
-  { name: 'MySQL', level: 65, color: '#00758f', category: 'Backend' },
-  { name: 'VB.Net', level: 65, color: '#68217a', category: 'Desktop' },
+  { name: 'MySQL', level: 85, color: '#00758f', category: 'Backend' },
   { name: 'Git / GitHub', level: 75, color: '#f05032', category: 'Tools' },
 ]
 
